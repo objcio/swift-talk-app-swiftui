@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,15 @@
 		8363E0EA22C4C59F00B55A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8363E0E922C4C59F00B55A7B /* Assets.xcassets */; };
 		8363E0ED22C4C59F00B55A7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8363E0EC22C4C59F00B55A7B /* Preview Assets.xcassets */; };
 		8363E0F022C4C59F00B55A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8363E0EE22C4C59F00B55A7B /* LaunchScreen.storyboard */; };
+		8363E0F922C4C7FE00B55A7B /* TinyNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 8363E0F822C4C7FE00B55A7B /* TinyNetworking */; };
+		8363E0FC22C4C83F00B55A7B /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 8363E0FB22C4C83F00B55A7B /* Model */; };
+		8363E0FE22C4C83F00B55A7B /* ViewHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = 8363E0FD22C4C83F00B55A7B /* ViewHelpers */; };
+		8363E10222C4C86D00B55A7B /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E0FF22C4C86D00B55A7B /* Resource.swift */; };
+		8363E10322C4C86D00B55A7B /* episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8363E10022C4C86D00B55A7B /* episodes.json */; };
+		8363E10422C4C86D00B55A7B /* collections.json in Resources */ = {isa = PBXBuildFile; fileRef = 8363E10122C4C86D00B55A7B /* collections.json */; };
+		8363E10622C4C88900B55A7B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10522C4C88900B55A7B /* Model.swift */; };
+		8363E10822C4C97F00B55A7B /* CollectionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10722C4C97F00B55A7B /* CollectionsList.swift */; };
+		8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10922C4CB8700B55A7B /* CollectionDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,12 @@
 		8363E0EC22C4C59F00B55A7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8363E0EF22C4C59F00B55A7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8363E0F122C4C59F00B55A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8363E0FF22C4C86D00B55A7B /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		8363E10022C4C86D00B55A7B /* episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episodes.json; sourceTree = "<group>"; };
+		8363E10122C4C86D00B55A7B /* collections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = collections.json; sourceTree = "<group>"; };
+		8363E10522C4C88900B55A7B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8363E10722C4C97F00B55A7B /* CollectionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsList.swift; sourceTree = "<group>"; };
+		8363E10922C4CB8700B55A7B /* CollectionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8363E0FE22C4C83F00B55A7B /* ViewHelpers in Frameworks */,
+				8363E0FC22C4C83F00B55A7B /* Model in Frameworks */,
+				8363E0F922C4C7FE00B55A7B /* TinyNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,13 +74,19 @@
 		8363E0E222C4C59E00B55A7B /* SwiftTalk */ = {
 			isa = PBXGroup;
 			children = (
+				8363E10122C4C86D00B55A7B /* collections.json */,
+				8363E10022C4C86D00B55A7B /* episodes.json */,
+				8363E0FF22C4C86D00B55A7B /* Resource.swift */,
 				8363E0E322C4C59E00B55A7B /* AppDelegate.swift */,
 				8363E0E522C4C59E00B55A7B /* SceneDelegate.swift */,
 				8363E0E722C4C59E00B55A7B /* ContentView.swift */,
+				8363E10922C4CB8700B55A7B /* CollectionDetails.swift */,
 				8363E0E922C4C59F00B55A7B /* Assets.xcassets */,
 				8363E0EE22C4C59F00B55A7B /* LaunchScreen.storyboard */,
 				8363E0F122C4C59F00B55A7B /* Info.plist */,
 				8363E0EB22C4C59F00B55A7B /* Preview Content */,
+				8363E10522C4C88900B55A7B /* Model.swift */,
+				8363E10722C4C97F00B55A7B /* CollectionsList.swift */,
 			);
 			path = SwiftTalk;
 			sourceTree = "<group>";
@@ -91,6 +115,11 @@
 			dependencies = (
 			);
 			name = SwiftTalk;
+			packageProductDependencies = (
+				8363E0F822C4C7FE00B55A7B /* TinyNetworking */,
+				8363E0FB22C4C83F00B55A7B /* Model */,
+				8363E0FD22C4C83F00B55A7B /* ViewHelpers */,
+			);
 			productName = SwiftTalk;
 			productReference = 8363E0E022C4C59E00B55A7B /* SwiftTalk.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +148,10 @@
 				Base,
 			);
 			mainGroup = 8363E0D722C4C59E00B55A7B;
+			packageReferences = (
+				8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */,
+				8363E0FA22C4C83F00B55A7B /* XCRemoteSwiftPackageReference "swift-talk-shared" */,
+			);
 			productRefGroup = 8363E0E122C4C59E00B55A7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,7 +167,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8363E0F022C4C59F00B55A7B /* LaunchScreen.storyboard in Resources */,
+				8363E10322C4C86D00B55A7B /* episodes.json in Resources */,
 				8363E0ED22C4C59F00B55A7B /* Preview Assets.xcassets in Resources */,
+				8363E10422C4C86D00B55A7B /* collections.json in Resources */,
 				8363E0EA22C4C59F00B55A7B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,8 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8363E10622C4C88900B55A7B /* Model.swift in Sources */,
+				8363E10822C4C97F00B55A7B /* CollectionsList.swift in Sources */,
 				8363E0E422C4C59E00B55A7B /* AppDelegate.swift in Sources */,
+				8363E10222C4C86D00B55A7B /* Resource.swift in Sources */,
 				8363E0E622C4C59E00B55A7B /* SceneDelegate.swift in Sources */,
+				8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */,
 				8363E0E822C4C59E00B55A7B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +379,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objcio/tiny-networking";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8363E0FA22C4C83F00B55A7B /* XCRemoteSwiftPackageReference "swift-talk-shared" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objcio/swift-talk-shared";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8363E0F822C4C7FE00B55A7B /* TinyNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */;
+			productName = TinyNetworking;
+		};
+		8363E0FB22C4C83F00B55A7B /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8363E0FA22C4C83F00B55A7B /* XCRemoteSwiftPackageReference "swift-talk-shared" */;
+			productName = Model;
+		};
+		8363E0FD22C4C83F00B55A7B /* ViewHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8363E0FA22C4C83F00B55A7B /* XCRemoteSwiftPackageReference "swift-talk-shared" */;
+			productName = ViewHelpers;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8363E0D822C4C59E00B55A7B /* Project object */;
 }

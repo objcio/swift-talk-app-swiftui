@@ -7,10 +7,22 @@
 //
 
 import SwiftUI
+import TinyNetworking
+import Model
+import ViewHelpers
 
 struct ContentView : View {
+    @ObjectBinding var collections = Resource(endpoint: allCollections)
     var body: some View {
-        Text("Hello World")
+        Group {
+            if collections.value == nil {
+                Text("Loading...")
+            } else {
+                NavigationView {
+                    CollectionsList(collections: collections.value!)
+                }
+            }
+        }
     }
 }
 
