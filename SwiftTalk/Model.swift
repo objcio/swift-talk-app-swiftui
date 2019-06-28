@@ -11,12 +11,37 @@ import SwiftUI
 import TinyNetworking
 import Model
 
-extension CollectionView: Identifiable {    
+extension CollectionView: Identifiable {}
+extension EpisodeView: Identifiable {
+    public var id: Int { number }
 }
 
 let allCollections = Endpoint<[CollectionView]>(json: .get, url: URL(string: "https://talk.objc.io/collections.json")!)
+let allEpisodes = Endpoint<[EpisodeView]>(json: .get, url: URL(string: "https://talk.objc.io/episodes.json")!)
 
 let sampleCollections: [CollectionView] = sample(name: "collections")
+let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
+
+import Combine
+
+final class Store: BindableObject {
+    let didChange: AnyPublisher<([CollectionView]?, [EpisodeView]?), Never>
+    let sharedCollections = Resource(endpoint: allCollections)
+    let sharedEpisodes = Resource(endpoint: allEpisodes)
+    
+    init() {
+        didChange = sharedCollections.didChange.zip(sharedEpisodes.didChange).eraseToAnyPublisher()
+    }
+    
+    var loaded: Bool {
+        sharedCollections.value != nil && sharedEpisodes.value != nil
+    }
+    
+    var collections: [CollectionView] { sharedCollections.value ?? [] }
+    var episodes: [EpisodeView] { sharedEpisodes.value ?? [] }
+}
+
+let sharedStore = Store()
 
 func sample<A: Codable>(name: String) -> A {
     let url = Bundle.main.url(forResource: name, withExtension: "json")!

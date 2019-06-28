@@ -12,14 +12,14 @@ import Model
 import ViewHelpers
 
 struct ContentView : View {
-    @ObjectBinding var collections = Resource(endpoint: allCollections)
+    @ObjectBinding var store = sharedStore
     var body: some View {
         Group {
-            if collections.value == nil {
+            if !store.loaded {
                 Text("Loading...")
             } else {
                 NavigationView {
-                    CollectionsList(collections: collections.value!)
+                    CollectionsList(collections: store.collections)
                 }
             }
         }

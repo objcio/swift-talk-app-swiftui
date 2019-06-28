@@ -74,8 +74,8 @@
 		8363E0E222C4C59E00B55A7B /* SwiftTalk */ = {
 			isa = PBXGroup;
 			children = (
-				8363E10122C4C86D00B55A7B /* collections.json */,
 				8363E10022C4C86D00B55A7B /* episodes.json */,
+				8363E10122C4C86D00B55A7B /* collections.json */,
 				8363E0FF22C4C86D00B55A7B /* Resource.swift */,
 				8363E0E322C4C59E00B55A7B /* AppDelegate.swift */,
 				8363E0E522C4C59E00B55A7B /* SceneDelegate.swift */,

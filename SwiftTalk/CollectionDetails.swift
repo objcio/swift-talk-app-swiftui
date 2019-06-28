@@ -12,18 +12,27 @@ import Model
 
 struct ImageError: Error {}
 
-struct CollectionDetails : View {
-    let collection: CollectionView
-    @ObjectBinding var image: Resource<UIImage>
-    init(collection: CollectionView) {
-        self.collection = collection
-        let endpoint = Endpoint<UIImage>(.get, url: collection.artwork.png, expectedStatusCode: expected200to300) { data in
+extension Endpoint where A == UIImage {
+    init(imageURL url: URL) {
+        self.init(.get, url: url, expectedStatusCode: expected200to300) { data in
             guard let d = data, let i = UIImage(data: d) else {
                 return .failure(ImageError())
             }
             return .success(i)
         }
-        self.image = Resource<UIImage>(endpoint: endpoint)
+    }
+}
+
+struct CollectionDetails : View {
+    let collection: CollectionView
+    @ObjectBinding var store = sharedStore
+    @ObjectBinding var image: Resource<UIImage>
+    var collectionEpisodes: [EpisodeView] {
+        return store.episodes.filter { $0.collection == collection.id }
+    }
+    init(collection: CollectionView) {
+        self.collection = collection
+        self.image = Resource(endpoint: Endpoint(imageURL: collection.artwork.png))
     }
     var body: some View {
         VStack {
@@ -32,6 +41,11 @@ struct CollectionDetails : View {
                 Image(uiImage: image.value!).resizable().aspectRatio(contentMode: .fit)
             }
             Text(collection.description).lineLimit(nil)
+            List {
+                ForEach(collectionEpisodes) { episode in
+                    Text(episode.title)
+                }
+            }
         }
     }
 }
