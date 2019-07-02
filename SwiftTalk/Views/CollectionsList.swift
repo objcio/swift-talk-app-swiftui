@@ -16,9 +16,17 @@ struct CollectionsList : View {
         List {
             ForEach(collections) { coll in
                 NavigationButton(destination: CollectionDetails(collection: coll)) {
-                    VStack(alignment: .leading) {
-                        Text(coll.title)
-                        Text("\(coll.episodes_count) episodes ᐧ \(TimeInterval(coll.total_duration).hoursAndMinutes)").font(.caption).color(.gray)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(coll.title)
+                            Text(coll.episodeCountAndTotalDuration)
+                                .font(.caption)
+                                .color(.gray)
+                        }
+                        if coll.new {
+                            Spacer()
+                            newBadge
+                        }
                     }
                 }
             }
