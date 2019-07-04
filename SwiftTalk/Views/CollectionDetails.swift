@@ -46,12 +46,14 @@ struct CollectionDetails : View {
             }.padding([.leading, .trailing])
             List {
                 ForEach(collectionEpisodes) { episode in
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(episode.title)
-                            .font(.headline)
-                        Text(episode.durationAndDate)
-                            .font(.subheadline)
-                            .color(.gray)
+                    NavigationLink(destination: Episode(episode: episode)) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(episode.title)
+                                .font(.headline)
+                            Text(episode.durationAndDate)
+                                .font(.subheadline)
+                                .color(.gray)
+                        }
                     }
                 }
             }
