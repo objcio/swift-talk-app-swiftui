@@ -13,6 +13,7 @@ import TinyNetworking
 struct EpisodeItem: View {
     let episode: EpisodeView
     @ObjectBinding var image: Resource<UIImage>
+    @ObjectBinding var store = sharedStore
     
     init(_ episode: EpisodeView) {
         self.episode = episode
@@ -21,13 +22,10 @@ struct EpisodeItem: View {
     
     var body: some View {
         HStack {
-            if image.value != nil {
-                Image(uiImage: image.value!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
-            }
             VStack(alignment: .leading, spacing: 2) {
+                Text(store.collection(for: episode)?.title ?? "")
+                    .font(.subheadline)
+                    .color(.blue)
                 Text(episode.title)
                     .font(.headline)
                 Text(episode.durationAndDate)

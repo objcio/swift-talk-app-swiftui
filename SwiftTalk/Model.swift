@@ -51,6 +51,10 @@ final class Store: BindableObject {
     
     var collections: [CollectionView] { sharedCollections.value ?? [] }
     var episodes: [EpisodeView] { sharedEpisodes.value ?? [] }
+    
+    func collection(for ep: EpisodeView) -> CollectionView? {
+        collections.first { $0.id == ep.collection }
+    }
 }
 
 let sharedStore = Store()
