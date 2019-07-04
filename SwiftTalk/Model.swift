@@ -20,6 +20,10 @@ extension EpisodeView {
     var durationAndDate: String {
         "\(TimeInterval(media_duration).hoursAndMinutes) · \(released_at.pretty)"
     }
+    
+    var mediaURL: URL? {
+        self.hls_url ?? self.preview_url
+    }
 }
 
 extension CollectionView {
@@ -28,8 +32,13 @@ extension CollectionView {
     }
 }
 
-let allCollections = Endpoint<[CollectionView]>(json: .get, url: URL(string: "https://talk.objc.io/collections.json")!)
-let allEpisodes = Endpoint<[EpisodeView]>(json: .get, url: URL(string: "https://talk.objc.io/episodes.json")!)
+fileprivate let decoder: JSONDecoder = {
+    let d = JSONDecoder()
+    d.dateDecodingStrategy = Model.decodingStrategy
+    return d
+}()
+let allCollections = Endpoint<[CollectionView]>(json: .get, url: URL(string: "https://talk.objc.io/collections.json")!, decoder: decoder)
+let allEpisodes = Endpoint<[EpisodeView]>(json: .get, url: URL(string: "https://talk.objc.io/episodes.json")!, decoder: decoder)
 
 let sampleCollections: [CollectionView] = sample(name: "collections")
 let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
@@ -62,8 +71,6 @@ let sharedStore = Store()
 func sample<A: Codable>(name: String) -> A {
     let url = Bundle.main.url(forResource: name, withExtension: "json")!
     let data = try! Data(contentsOf: url)
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .secondsSince1970
     return try! decoder.decode(A.self, from: data)
 }
 
