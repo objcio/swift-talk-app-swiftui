@@ -24,6 +24,7 @@
 		8363E10622C4C88900B55A7B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10522C4C88900B55A7B /* Model.swift */; };
 		8363E10822C4C97F00B55A7B /* CollectionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10722C4C97F00B55A7B /* CollectionsList.swift */; };
 		8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10922C4CB8700B55A7B /* CollectionDetails.swift */; };
+		83758B7B22CE0FCC00C7978D /* AllEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		8363E10522C4C88900B55A7B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8363E10722C4C97F00B55A7B /* CollectionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsList.swift; sourceTree = "<group>"; };
 		8363E10922C4CB8700B55A7B /* CollectionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetails.swift; sourceTree = "<group>"; };
+		83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllEpisodes.swift; path = SwiftTalk/AllEpisodes.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		17CD7D7A22CB9BAA00167A6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */,
 				8363E0E722C4C59E00B55A7B /* ContentView.swift */,
 				8363E10922C4CB8700B55A7B /* CollectionDetails.swift */,
 				8363E10722C4C97F00B55A7B /* CollectionsList.swift */,
@@ -200,6 +203,7 @@
 				170307D322CB8EB500958FFB /* ViewHelpers.swift in Sources */,
 				8363E0E422C4C59E00B55A7B /* AppDelegate.swift in Sources */,
 				170307D522CB8F7A00958FFB /* Helpers.swift in Sources */,
+				83758B7B22CE0FCC00C7978D /* AllEpisodes.swift in Sources */,
 				8363E10222C4C86D00B55A7B /* Resource.swift in Sources */,
 				8363E0E622C4C59E00B55A7B /* SceneDelegate.swift in Sources */,
 				8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */,

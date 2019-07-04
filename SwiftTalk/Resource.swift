@@ -12,22 +12,27 @@ import Combine
 import SwiftUI
 
 final class Resource<A>: BindableObject {
-    let didChange = PassthroughSubject<A?, Never>()
+    var didChange: AnyPublisher<A?, Never> = Publishers.Empty().eraseToAnyPublisher()
+    private let subject = PassthroughSubject<A?, Never>()
     let endpoint: Endpoint<A>
     var value: A? {
         didSet {
             DispatchQueue.main.async {
-                self.didChange.send(self.value)
+                self.subject.send(self.value)
             }
         }
     }
     
     init(endpoint: Endpoint<A>) {
         self.endpoint = endpoint
-        reload()
+        // todo only reload on the first subscriber
+        self.didChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
+            self?.reload()
+        }).eraseToAnyPublisher()
     }
     
     func reload() {
+        print(endpoint.request.url!)
         URLSession.shared.load(endpoint) { result in
             self.value = try? result.get()
         }
