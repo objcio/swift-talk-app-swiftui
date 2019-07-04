@@ -16,6 +16,18 @@ extension EpisodeView: Identifiable {
     public var id: Int { number }
 }
 
+extension EpisodeView {
+    var durationAndDate: String {
+        "\(TimeInterval(media_duration).hoursAndMinutes) · \(released_at.pretty)"
+    }
+}
+
+extension CollectionView {
+    var episodeCountAndTotalDuration: String {
+        "\(episodes_count) episodes ᐧ \(TimeInterval(total_duration).hoursAndMinutes)"
+    }
+}
+
 let allCollections = Endpoint<[CollectionView]>(json: .get, url: URL(string: "https://talk.objc.io/collections.json")!)
 let allEpisodes = Endpoint<[EpisodeView]>(json: .get, url: URL(string: "https://talk.objc.io/episodes.json")!)
 
