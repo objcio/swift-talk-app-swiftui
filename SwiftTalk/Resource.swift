@@ -15,6 +15,7 @@ final class Resource<A>: BindableObject {
     var didChange: AnyPublisher<A?, Never> = Publishers.Empty().eraseToAnyPublisher()
     private let subject = PassthroughSubject<A?, Never>()
     let endpoint: Endpoint<A>
+    private var firstLoad = true
     var value: A? {
         didSet {
             DispatchQueue.main.async {
@@ -25,9 +26,11 @@ final class Resource<A>: BindableObject {
     
     init(endpoint: Endpoint<A>) {
         self.endpoint = endpoint
-        // todo only reload on the first subscriber
         self.didChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
-            self?.reload()
+            guard let s = self, s.firstLoad else { return }
+            s.firstLoad = false
+            s.reload()
+
         }).eraseToAnyPublisher()
     }
     
