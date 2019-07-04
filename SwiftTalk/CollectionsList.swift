@@ -15,7 +15,7 @@ struct CollectionsList : View {
     var body: some View {
         List {
             ForEach(collections) { coll in
-                NavigationButton(destination: CollectionDetails(collection: coll)) {
+                NavigationLink(destination: CollectionDetails(collection: coll)) {
                     VStack(alignment: .leading) {
                         Text(coll.title)
                         Text("\(coll.episodes_count) episodes ᐧ \(TimeInterval(coll.total_duration).hoursAndMinutes)").font(.caption).color(.gray)
