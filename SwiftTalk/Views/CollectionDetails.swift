@@ -21,39 +21,39 @@ struct CollectionDetails : View {
         self.collection = collection
         self.image = Resource(endpoint: Endpoint(imageURL: collection.artwork.png))
     }
-    var body: some View {
-        VStack(alignment: .leading) {
-            if image.value != nil {
-                Image(uiImage: image.value!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
+    var body: some View {        
+        List {
             VStack(alignment: .leading) {
-                HStack {
-                    Text(collection.title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .lineLimit(nil)
-                    if collection.new {
-                        newBadge
-                    }
+                if image.value != nil {
+                    Image(uiImage: image.value!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                 }
-                Text(collection.episodeCountAndTotalDuration)
-                    .color(.gray)
-                    .padding([.bottom])
-                Text(collection.description)
-                    .lineLimit(nil)
-            }.padding([.leading, .trailing])
-            List {
-                ForEach(collectionEpisodes) { episode in
-                    NavigationLink(destination: Episode(episode: episode)) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(episode.title)
-                                .font(.headline)
-                            Text(episode.durationAndDate)
-                                .font(.subheadline)
-                                .color(.gray)
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(collection.title)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .lineLimit(nil)
+                        if collection.new {
+                            newBadge
                         }
+                    }
+                    Text(collection.episodeCountAndTotalDuration)
+                        .color(.gray)
+                        .padding([.bottom])
+                    Text(collection.description)
+                        .lineLimit(nil)
+                }
+            }
+            ForEach(collectionEpisodes) { episode in
+                NavigationLink(destination: Episode(episode: episode)) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(episode.title)
+                            .font(.headline)
+                        Text(episode.durationAndDate)
+                            .font(.subheadline)
+                            .color(.gray)
                     }
                 }
             }
