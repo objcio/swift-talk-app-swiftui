@@ -36,16 +36,22 @@ struct Episode : View {
         }
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(episode.title)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .lineLimit(nil)
+        VStack(alignment: .leading, spacing: 12) {
+            VStack (alignment: .leading) {
+                Text(episode.title)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .lineLimit(nil)
+                Text(episode.durationAndDate)
+                    .color(.gray)
+            }
             Text(episode.synopsis)
                 .lineLimit(nil)
+                .padding([.bottom])
             Player(url: episode.mediaURL!, isPlaying: $playState.isPlaying, overlay: overlay)
               .aspectRatio(16/9, contentMode: .fit)
-        }
+            Spacer()
+        }.padding([.leading, .trailing])
     }
 }
 
