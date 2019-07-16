@@ -12,13 +12,7 @@ import TinyNetworking
 
 struct EpisodeItem: View {
     let episode: EpisodeView
-    @ObjectBinding var image: Resource<UIImage>
     @ObjectBinding var store = sharedStore
-    
-    init(_ episode: EpisodeView) {
-        self.episode = episode
-        self.image = Resource(endpoint: Endpoint(imageURL: episode.poster_url))
-    }
     
     var body: some View {
         HStack {
@@ -43,7 +37,7 @@ struct AllEpisodes : View {
         List {
             ForEach(episodes) { episode in
                 NavigationLink(destination: Episode(episode: episode)) {
-                    EpisodeItem(episode)
+                    EpisodeItem(episode: episode)
                 }
             }
         }.navigationBarTitle("All Episodes")
