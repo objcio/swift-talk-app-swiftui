@@ -68,6 +68,8 @@
 		17CD7D7A22CB9BAA00167A6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				83758B8022CE459100C7978D /* Episode.swift */,
+				83758B8222CE465500C7978D /* Player.swift */,
 				83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */,
 				8363E0E722C4C59E00B55A7B /* ContentView.swift */,
 				8363E10922C4CB8700B55A7B /* CollectionDetails.swift */,
@@ -79,7 +81,6 @@
 		8363E0D722C4C59E00B55A7B = {
 			isa = PBXGroup;
 			children = (
-				83758B8222CE465500C7978D /* Player.swift */,
 				8363E0E222C4C59E00B55A7B /* SwiftTalk */,
 				8363E0E122C4C59E00B55A7B /* Products */,
 			);
@@ -99,7 +100,6 @@
 				8363E10022C4C86D00B55A7B /* episodes.json */,
 				8363E10122C4C86D00B55A7B /* collections.json */,
 				8363E0FF22C4C86D00B55A7B /* Resource.swift */,
-				83758B8022CE459100C7978D /* Episode.swift */,
 				8363E0E322C4C59E00B55A7B /* AppDelegate.swift */,
 				8363E0E522C4C59E00B55A7B /* SceneDelegate.swift */,
 				170307D422CB8F7A00958FFB /* Helpers.swift */,
