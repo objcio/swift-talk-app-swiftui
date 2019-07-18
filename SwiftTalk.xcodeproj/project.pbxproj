@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		170307D322CB8EB500958FFB /* ViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170307D222CB8EB500958FFB /* ViewHelpers.swift */; };
 		170307D522CB8F7A00958FFB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170307D422CB8F7A00958FFB /* Helpers.swift */; };
+		8325D5DC22E098380087B423 /* KeychainItem in Frameworks */ = {isa = PBXBuildFile; productRef = 8325D5DB22E098380087B423 /* KeychainItem */; };
 		8363E0E422C4C59E00B55A7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E0E322C4C59E00B55A7B /* AppDelegate.swift */; };
 		8363E0E622C4C59E00B55A7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E0E522C4C59E00B55A7B /* SceneDelegate.swift */; };
 		8363E0E822C4C59E00B55A7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E0E722C4C59E00B55A7B /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 		8363E10622C4C88900B55A7B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10522C4C88900B55A7B /* Model.swift */; };
 		8363E10822C4C97F00B55A7B /* CollectionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10722C4C97F00B55A7B /* CollectionsList.swift */; };
 		8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363E10922C4CB8700B55A7B /* CollectionDetails.swift */; };
+		8373F81F22E0994C006E605A /* AuthenticationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373F81E22E0994C006E605A /* AuthenticationHelpers.swift */; };
 		83758B7B22CE0FCC00C7978D /* AllEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */; };
 		83758B8122CE459100C7978D /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83758B8022CE459100C7978D /* Episode.swift */; };
 		83758B8322CE465500C7978D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83758B8222CE465500C7978D /* Player.swift */; };
@@ -46,6 +48,7 @@
 		8363E10522C4C88900B55A7B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8363E10722C4C97F00B55A7B /* CollectionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsList.swift; sourceTree = "<group>"; };
 		8363E10922C4CB8700B55A7B /* CollectionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetails.swift; sourceTree = "<group>"; };
+		8373F81E22E0994C006E605A /* AuthenticationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationHelpers.swift; path = "../../../../../System/Volumes/Data/Users/chris/Downloads/swift-talk-app-swiftui/SwiftTalk/AuthenticationHelpers.swift"; sourceTree = "<group>"; };
 		83758B7A22CE0FCC00C7978D /* AllEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllEpisodes.swift; path = SwiftTalk/AllEpisodes.swift; sourceTree = SOURCE_ROOT; };
 		83758B8022CE459100C7978D /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		83758B8222CE465500C7978D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 				8363E0FE22C4C83F00B55A7B /* ViewHelpers in Frameworks */,
 				8363E0FC22C4C83F00B55A7B /* Model in Frameworks */,
 				8363E0F922C4C7FE00B55A7B /* TinyNetworking in Frameworks */,
+				8325D5DC22E098380087B423 /* KeychainItem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +114,7 @@
 				8363E10522C4C88900B55A7B /* Model.swift */,
 				17CD7D7A22CB9BAA00167A6A /* Views */,
 				170307D222CB8EB500958FFB /* ViewHelpers.swift */,
+				8373F81E22E0994C006E605A /* AuthenticationHelpers.swift */,
 			);
 			path = SwiftTalk;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				8363E0F822C4C7FE00B55A7B /* TinyNetworking */,
 				8363E0FB22C4C83F00B55A7B /* Model */,
 				8363E0FD22C4C83F00B55A7B /* ViewHelpers */,
+				8325D5DB22E098380087B423 /* KeychainItem */,
 			);
 			productName = SwiftTalk;
 			productReference = 8363E0E022C4C59E00B55A7B /* SwiftTalk.app */;
@@ -174,6 +180,7 @@
 			packageReferences = (
 				8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */,
 				8363E0FA22C4C83F00B55A7B /* XCRemoteSwiftPackageReference "swift-talk-shared" */,
+				8325D5DA22E098380087B423 /* XCRemoteSwiftPackageReference "keychain-item" */,
 			);
 			productRefGroup = 8363E0E122C4C59E00B55A7B /* Products */;
 			projectDirPath = "";
@@ -216,6 +223,7 @@
 				8363E0E622C4C59E00B55A7B /* SceneDelegate.swift in Sources */,
 				8363E10A22C4CB8700B55A7B /* CollectionDetails.swift in Sources */,
 				8363E0E822C4C59E00B55A7B /* ContentView.swift in Sources */,
+				8373F81F22E0994C006E605A /* AuthenticationHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +417,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8325D5DA22E098380087B423 /* XCRemoteSwiftPackageReference "keychain-item" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objcio/keychain-item";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
 		8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/objcio/tiny-networking";
@@ -428,6 +444,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8325D5DB22E098380087B423 /* KeychainItem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8325D5DA22E098380087B423 /* XCRemoteSwiftPackageReference "keychain-item" */;
+			productName = KeychainItem;
+		};
 		8363E0F822C4C7FE00B55A7B /* TinyNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8363E0F722C4C7FE00B55A7B /* XCRemoteSwiftPackageReference "tiny-networking" */;

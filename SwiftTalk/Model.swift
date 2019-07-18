@@ -12,9 +12,7 @@ import TinyNetworking
 import Model
 
 extension CollectionView: Identifiable {}
-extension EpisodeView: Identifiable {
-    public var id: Int { number }
-}
+extension EpisodeView: Identifiable {}
 
 extension EpisodeView {
     var durationAndDate: String {
