@@ -44,18 +44,23 @@ let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
 import Combine
 
 final class EpisodeProgress: BindableObject {
-    let willChange = PassthroughSubject<(), Never>()
-    
+    let willChange = PassthroughSubject<TimeInterval, Never>()
+    let sink: Subscribers.Sink<TimeInterval, Never>
     let episode: EpisodeView
     var progress: TimeInterval {
         willSet {
-            print(newValue)
-            willChange.send()
+            willChange.send(newValue)
         }
     }
     init(episode: EpisodeView, progress: TimeInterval) {
         self.episode = episode
         self.progress = progress
+        sink = willChange
+            .throttle(for: 10, scheduler: RunLoop.main, latest: true)
+            .removeDuplicates()
+            .sink { time in
+                print("Send to network \(time) \(episode.id)")
+        }
     }
 }
 
