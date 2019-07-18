@@ -36,11 +36,11 @@ struct CollectionDetails : View {
                             .fontWeight(.bold)
                             .lineLimit(nil)
                         if collection.new {
-                            newBadge
+                            NewBadge()
                         }
                     }
                     Text(collection.episodeCountAndTotalDuration)
-                        .color(.gray)
+                        .foregroundColor(.gray)
                         .padding([.bottom])
                     Text(collection.description)
                         .lineLimit(nil)
@@ -53,7 +53,7 @@ struct CollectionDetails : View {
                             .font(.headline)
                         Text(episode.durationAndDate)
                             .font(.subheadline)
-                            .color(.gray)
+                            .foregroundColor(.gray)
                     }
                 }
             }

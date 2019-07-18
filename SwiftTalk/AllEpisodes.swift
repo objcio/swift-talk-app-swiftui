@@ -19,12 +19,12 @@ struct EpisodeItem: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(store.collection(for: episode)?.title ?? "")
                     .font(.subheadline)
-                    .color(.blue)
+                    .foregroundColor(.blue)
                 Text(episode.title)
                     .font(.headline)
                 Text(episode.durationAndDate)
                     .font(.subheadline)
-                    .color(.gray)
+                    .foregroundColor(.gray)
             }
         }
     }

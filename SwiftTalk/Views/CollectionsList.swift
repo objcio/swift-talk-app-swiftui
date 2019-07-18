@@ -21,11 +21,11 @@ struct CollectionsList : View {
                             Text(coll.title)
                             Text(coll.episodeCountAndTotalDuration)
                                 .font(.caption)
-                                .color(.gray)
+                                .foregroundColor(.gray)
                         }
                         if coll.new {
                             Spacer()
-                            newBadge
+                            NewBadge()
                         }
                     }
                 }

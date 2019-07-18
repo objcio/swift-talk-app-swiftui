@@ -46,12 +46,12 @@ let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
 import Combine
 
 final class Store: BindableObject {
-    let didChange: AnyPublisher<([CollectionView]?, [EpisodeView]?), Never>
+    let willChange: AnyPublisher<(), Never>
     let sharedCollections = Resource(endpoint: allCollections)
     let sharedEpisodes = Resource(endpoint: allEpisodes)
     
     init() {
-        didChange = sharedCollections.didChange.zip(sharedEpisodes.didChange).eraseToAnyPublisher()
+        willChange = sharedCollections.willChange.zip(sharedEpisodes.willChange).map { _ in () }.eraseToAnyPublisher()
     }
     
     var loaded: Bool {

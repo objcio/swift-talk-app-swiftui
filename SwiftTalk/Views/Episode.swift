@@ -43,7 +43,7 @@ struct Episode : View {
                     .fontWeight(.bold)
                     .lineLimit(nil)
                 Text(episode.durationAndDate)
-                    .color(.gray)
+                    .foregroundColor(.gray)
             }
             Text(episode.synopsis)
                 .lineLimit(nil)

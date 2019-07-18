@@ -8,7 +8,11 @@
 
 import SwiftUI
 
-let newBadge = Text("NEW").color(.white).font(.footnote).padding(5).background(Color.blue.cornerRadius(5))
+struct NewBadge: View {
+    var body: some View {
+        Text("NEW").foregroundColor(.white).font(.footnote).padding(5).background(Color.blue.cornerRadius(5))
+    }
+}
 
 struct LazyView<V: View>: View {
     let build: () -> V

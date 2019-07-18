@@ -12,21 +12,20 @@ import Combine
 import SwiftUI
 
 final class Resource<A>: BindableObject {
-    var didChange: AnyPublisher<A?, Never> = Publishers.Empty().eraseToAnyPublisher()
-    private let subject = PassthroughSubject<A?, Never>()
+    // todo empty publisher
+    var willChange: AnyPublisher<(), Never> = Publishers.Sequence<[()], Never>(sequence: []).eraseToAnyPublisher()
+    private let subject = PassthroughSubject<(), Never>()
     let endpoint: Endpoint<A>
     private var firstLoad = true
     var value: A? {
-        didSet {
-            DispatchQueue.main.async {
-                self.subject.send(self.value)
-            }
+        willSet {
+            self.subject.send()
         }
     }
     
     init(endpoint: Endpoint<A>) {
         self.endpoint = endpoint
-        self.didChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
+        self.willChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
             guard let s = self, s.firstLoad else { return }
             s.firstLoad = false
             s.reload()
@@ -37,7 +36,9 @@ final class Resource<A>: BindableObject {
     func reload() {
         print(endpoint.request.url!)
         URLSession.shared.load(endpoint) { result in
-            self.value = try? result.get()
+            DispatchQueue.main.async {
+                self.value = try? result.get()
+            }
         }
     }
 }
