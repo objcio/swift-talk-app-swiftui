@@ -45,6 +45,22 @@ let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
 
 import Combine
 
+final class EpisodeProgress: BindableObject {
+    let willChange = PassthroughSubject<(), Never>()
+    
+    let episode: EpisodeView
+    var progress: TimeInterval {
+        willSet {
+            print(newValue)
+            willChange.send()
+        }
+    }
+    init(episode: EpisodeView, progress: TimeInterval) {
+        self.episode = episode
+        self.progress = progress
+    }
+}
+
 final class Store: BindableObject {
     let willChange: AnyPublisher<(), Never>
     let sharedCollections = Resource(endpoint: allCollections)
