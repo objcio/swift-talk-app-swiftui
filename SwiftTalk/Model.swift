@@ -53,8 +53,12 @@ final class EpisodeProgress: BindableObject {
             .throttle(for: 10, scheduler: RunLoop.main, latest: true)
             .removeDuplicates()
             .sink { time in
+                guard let credentials = Session.shared.credentials else { return }
+                let auth = server.authenticated(sessionId: credentials.sessionId, csrf: credentials.csrf)
+                let resource = auth.playProgress(episode: episode, progress: Int(time))
+                URLSession.shared.load(resource, onComplete: { print($0) })
                 print("Send to network \(time) \(episode.id)")
-        }
+            }
     }
 }
 
