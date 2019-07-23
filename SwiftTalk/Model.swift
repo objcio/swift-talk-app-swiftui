@@ -30,13 +30,7 @@ extension CollectionView {
     }
 }
 
-fileprivate let decoder: JSONDecoder = {
-    let d = JSONDecoder()
-    d.dateDecodingStrategy = Model.decodingStrategy
-    return d
-}()
-let allCollections = Endpoint<[CollectionView]>(json: .get, url: URL(string: "https://talk.objc.io/collections.json")!, decoder: decoder)
-let allEpisodes = Endpoint<[EpisodeView]>(json: .get, url: URL(string: "https://talk.objc.io/episodes.json")!, decoder: decoder)
+let server = Server()
 
 let sampleCollections: [CollectionView] = sample(name: "collections")
 let sampleEpisodes: [EpisodeView] = sample(name: "episodes")
@@ -66,8 +60,8 @@ final class EpisodeProgress: BindableObject {
 
 final class Store: BindableObject {
     let willChange: AnyPublisher<(), Never>
-    let sharedCollections = Resource(endpoint: allCollections)
-    let sharedEpisodes = Resource(endpoint: allEpisodes)
+    let sharedCollections = Resource(endpoint: server.allCollections)
+    let sharedEpisodes = Resource(endpoint: server.allEpisodes)
     
     init() {
         willChange = sharedCollections.willChange.zip(sharedEpisodes.willChange).map { _ in () }.eraseToAnyPublisher()

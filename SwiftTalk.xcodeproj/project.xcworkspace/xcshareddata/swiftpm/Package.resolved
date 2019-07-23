@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/objcio/swift-talk-shared",
         "state": {
           "branch": "master",
-          "revision": "18c4db2cfb4c49049291ddf2ae64571d0c3c2710",
+          "revision": "b2b83d439faeb316c8f09f4bd337fd8d18d325b8",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/objcio/tiny-networking",
         "state": {
           "branch": "master",
-          "revision": "58a275954c38c578bc080bd0a41b0695bb02dd14",
+          "revision": "7e898a21962428316c36fd40f9949e60b90a0e65",
           "version": null
         }
       }
