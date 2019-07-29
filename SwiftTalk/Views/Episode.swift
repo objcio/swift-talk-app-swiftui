@@ -19,6 +19,26 @@ struct PlayState {
     var startedPlaying = false
 }
 
+struct PreviewBadge: View {
+    let text: Text = Text("PREVIEW")
+    var body: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .center) {
+                Path { p in
+                    p.move(to: .zero)
+                    p.addLine(to: CGPoint(x: proxy.size.width, y: 0))
+                    p.addLine(to: CGPoint(x: 0, y: proxy.size.height))
+                }
+                .fill(Color.orange)
+                self.text
+                    .foregroundColor(.white)
+                    .offset(CGSize(width: 0, height: -15))
+                    .rotationEffect(.degrees(-45), anchor: .init(x: 0.5, y: 0.5))
+            }
+        }
+    }
+}
+
 struct Episode : View {
     let episode: EpisodeView
     @State var playState = PlayState()
@@ -50,8 +70,14 @@ struct Episode : View {
             Text(episode.synopsis)
                 .lineLimit(nil)
                 .padding([.bottom])
-            Player(url: episode.mediaURL!, isPlaying: $playState.isPlaying, playPosition: $progress.progress, overlay: overlay)
-              .aspectRatio(16/9, contentMode: .fit)
+            ZStack(alignment: .topLeading) {
+                Player(url: episode.mediaURL!, isPlaying: $playState.isPlaying, playPosition: $progress.progress, overlay: overlay)
+                  .aspectRatio(16/9, contentMode: .fit)
+                if episode.isPreview {
+                    PreviewBadge()
+                        .frame(width: 100, height: 100)
+                }
+            }
             Slider(value: $progress.progress, from: 0, through: TimeInterval(episode.media_duration))
             Spacer()
         }.padding([.leading, .trailing])

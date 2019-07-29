@@ -14,6 +14,11 @@ struct NewBadge: View {
     }
 }
 
+extension Color {
+    // FFA940
+    static let orange: Color = Color(red: 255/255.0, green: 169/255, blue: 64/255)
+}
+
 struct LazyView<V: View>: View {
     let build: () -> V
     

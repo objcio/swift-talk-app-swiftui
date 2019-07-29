@@ -20,7 +20,11 @@ extension EpisodeView {
     }
     
     var mediaURL: URL? {
-        self.hls_url ?? self.preview_url
+        hls_url ?? preview_url
+    }
+    
+    var isPreview: Bool {
+        hls_url == nil
     }
 }
 
