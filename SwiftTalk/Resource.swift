@@ -12,20 +12,15 @@ import Combine
 import SwiftUI
 
 final class Resource<A>: ObservableObject {
-    // todo empty publisher
-    var objectWillChange: AnyPublisher<(), Never> = Publishers.Sequence<[()], Never>(sequence: []).eraseToAnyPublisher()
-    private let subject = PassthroughSubject<(), Never>()
+    // todo is there a nicer way to have an empty publisher?
+    var objectWillChange: AnyPublisher<A?, Never> = Publishers.Sequence<[A?], Never>(sequence: []).eraseToAnyPublisher()
+    @Published var value: A? = nil
     let endpoint: Endpoint<A>
     private var firstLoad = true
-    var value: A? {
-        willSet {
-            self.subject.send()
-        }
-    }
     
     init(endpoint: Endpoint<A>) {
         self.endpoint = endpoint
-        self.objectWillChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
+        self.objectWillChange = $value.handleEvents(receiveSubscription: { [weak self] sub in
             guard let s = self, s.firstLoad else { return }
             s.firstLoad = false
             s.reload()
