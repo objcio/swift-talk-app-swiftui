@@ -12,8 +12,8 @@ import Model
 
 struct CollectionDetails : View {
     let collection: CollectionView
-    @ObjectBinding var store = sharedStore
-    @ObjectBinding var image: Resource<UIImage>
+    @ObservedObject var store = sharedStore
+    @ObservedObject var image: Resource<UIImage>
     var collectionEpisodes: [EpisodeView] {
         return store.episodes.filter { $0.collection == collection.id }
     }

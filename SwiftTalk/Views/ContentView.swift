@@ -12,13 +12,13 @@ import Model
 import ViewHelpers
 
 struct ContentView : View {
-    @ObjectBinding var store = sharedStore
+    @ObservedObject var store = sharedStore
     var body: some View {
         Group {
             if !store.loaded {
                 Text("Loading...")
             } else {
-                TabbedView {
+                TabView {
                     NavigationView {
                         CollectionsList(collections: store.collections)
                     }.tabItem { Text("Collections" )}.tag(0)
