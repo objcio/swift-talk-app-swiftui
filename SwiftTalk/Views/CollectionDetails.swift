@@ -51,7 +51,7 @@ struct CollectionDetails : View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(episode.title)
                             .font(.headline)
-                        Text(episode.durationAndDate)
+                        Text(episode.metaInfo)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }

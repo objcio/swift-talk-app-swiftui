@@ -22,7 +22,7 @@ struct EpisodeItem: View {
                     .foregroundColor(.blue)
                 Text(episode.title)
                     .font(.headline)
-                Text(episode.durationAndDate)
+                Text(episode.metaInfo)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }

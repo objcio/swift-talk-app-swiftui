@@ -44,7 +44,7 @@ struct Episode : View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .lineLimit(nil)
-                Text(episode.durationAndDate)
+                Text(episode.metaInfo)
                     .foregroundColor(.gray)
             }
             Text(episode.synopsis)

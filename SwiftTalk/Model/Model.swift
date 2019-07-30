@@ -15,8 +15,8 @@ extension CollectionView: Identifiable {}
 extension EpisodeView: Identifiable {}
 
 extension EpisodeView {
-    var durationAndDate: String {
-        "\(TimeInterval(media_duration).hoursAndMinutes) · \(released_at.pretty)"
+    var metaInfo: String {
+        "#\(number) · \(TimeInterval(media_duration).hoursAndMinutes) · \(released_at.pretty)"
     }
     
     var mediaURL: URL? {
