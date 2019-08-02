@@ -14,9 +14,9 @@
         "package": "swift-talk-shared",
         "repositoryURL": "https://github.com/objcio/swift-talk-shared",
         "state": {
-          "branch": "master",
-          "revision": "b2b83d439faeb316c8f09f4bd337fd8d18d325b8",
-          "version": null
+          "branch": null,
+          "revision": "0238161c1bf1a3db01c6d51b801e6d02656199b4",
+          "version": "0.3.3"
         }
       },
       {

@@ -24,10 +24,12 @@ struct Episode : View {
     @State var playState = PlayState()
     @ObservedObject var image: Resource<UIImage>
     @ObservedObject var progress: EpisodeProgress
+    @ObservedObject var details: Resource<EpisodeDetails>
     init(episode: EpisodeView) {
         self.episode = episode
         self.image = Resource(endpoint: Endpoint(imageURL: episode.poster_url))
         self.progress = EpisodeProgress(episode: episode, progress: 0) // todo real progress
+        self.details = Resource(endpoint: Session.shared.server.episodeDetails(episode: episode))
     }
     
     var overlay: AnyView? {

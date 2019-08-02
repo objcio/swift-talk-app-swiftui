@@ -30,7 +30,14 @@ extension CollectionView {
     }
 }
 
-let server = Server()
+extension Session {
+    var server: Server {
+        let creds = credentials.map {
+            Credentials(sessionId: $0.sessionId, csrf: $0.csrf)
+        }
+        return Server(credentials: creds)
+    }
+}
 
 let sampleCollections: [CollectionView] = sample(name: "collections")
 let sampleEpisodes: [EpisodeView] = sample(name: "episodes")

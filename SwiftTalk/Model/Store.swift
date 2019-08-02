@@ -13,8 +13,8 @@ import Combine
 
 final class Store: ObservableObject {
     let objectWillChange: AnyPublisher<(), Never>
-    let sharedCollections = Resource(endpoint: server.allCollections)
-    let sharedEpisodes = Resource(endpoint: server.allEpisodes)
+    let sharedCollections = Resource(endpoint: Session.shared.server.allCollections)
+    let sharedEpisodes = Resource(endpoint: Session.shared.server.allEpisodes)
     
     init() {
         objectWillChange = sharedCollections.objectWillChange.zip(sharedEpisodes.objectWillChange).map { _ in () }.eraseToAnyPublisher()
