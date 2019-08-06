@@ -44,19 +44,9 @@ extension Path {
 
 let arrowStrokeStyle = StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0)
 
-struct OnPath<P: Shape, S: Shape>: Shape {
-    let _path: P
+struct FollowPath<S: Shape>: GeometryEffect {
+    var position: CGFloat // 0...1
     var shape: S
-    var position: CGFloat
-    let trailLength: CGFloat
-    let strokeStyle: StrokeStyle = arrowStrokeStyle
-    
-    init(shape: S, on path: P, at position: CGFloat, trailLength: CGFloat) {
-        self.shape = shape
-        self._path = path
-        self.position = position
-        self.trailLength = trailLength
-    }
     
     var animatableData: AnimatablePair<CGFloat, S.AnimatableData> {
         get {
@@ -68,25 +58,44 @@ struct OnPath<P: Shape, S: Shape>: Shape {
         }
     }
     
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        let rect = CGRect(origin: .zero, size: size)
+        let path = shape.path(in: rect)
+        let (point, angle) = path.pointAndAngle(at: position)
+        let affineTransform = CGAffineTransform(translationX: point.x, y: point.y).rotated(by: CGFloat(angle.radians + Double.pi/2))
+        return ProjectionTransform(affineTransform)
+    }
+}
+
+struct Trail<P: Shape>: Shape {
+    let _path: P
+    var position: CGFloat
+    let trailLength: CGFloat
+    
+    init(path: P, at position: CGFloat, trailLength: CGFloat) {
+        self._path = path
+        self.position = position
+        self.trailLength = trailLength
+    }
+    
+    var animatableData: CGFloat {
+        get {
+            position
+        }
+        set {
+            self.position = newValue
+        }
+    }
+    
     func path(in rect: CGRect) -> Path {
         let path = _path.path(in: rect)
-        let (point, angle) = path.pointAndAngle(at: position)
-        let shapePath = shape.path(in: rect)
-        let size = shapePath.boundingRect.size
-        let head = shapePath
-            .offsetBy(dx: -size.width/2, dy: -size.height/2)
-            .applying(CGAffineTransform(rotationAngle: CGFloat(angle.radians+Double.pi/2)))
-            .offsetBy(dx: point.x, dy: point.y)
         let trimFrom = position - trailLength
         var result = Path()
         if trimFrom < 0 {
             result.addPath(path.trimmedPath(from: trimFrom + 1, to: 1))
         }
         result.addPath(path.trimmedPath(from: max(0, trimFrom), to: position))
-        result = result.strokedPath(strokeStyle)
-        result.addPath(head)
         return result
-
     }
 }
 
@@ -107,12 +116,14 @@ struct Loader: View {
     @State var isAnimating = false
     @State var position: CGFloat = 0
     var body: some View {
-        OnPath(shape:
-            ArrowHead().size(width: 15, height: 15),
-               on: Eight(),
-               at: position,
-               trailLength: trailLength
-            ).padding(20)
+        ZStack {
+            Trail(path: Eight(), at: position, trailLength: 0.15)
+                .stroke(Color.black, style: arrowStrokeStyle)
+            ArrowHead().size(width: 16, height: 16)
+                .offset(x: -8, y: -8)
+                .modifier(FollowPath(position: position, shape: Eight()))
+        }
+        .padding(20)
         .onAppear {
             withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
                 self.position = 1
