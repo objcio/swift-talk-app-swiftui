@@ -16,7 +16,8 @@ struct ContentView : View {
     var body: some View {
         Group {
             if !store.loaded {
-                Text("Loading...")
+                Loader()
+                    .aspectRatio(16/9, contentMode: .fit)
             } else {
                 TabbedView {
                     NavigationView {

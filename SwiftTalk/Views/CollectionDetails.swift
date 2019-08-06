@@ -24,10 +24,12 @@ struct CollectionDetails : View {
     var body: some View {        
         List {
             VStack(alignment: .leading) {
-                if image.value != nil {
+                if image.value != nil {                    
                     Image(uiImage: image.value!)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(16/9, contentMode: .fit)
+                } else {
+                    Loader().aspectRatio(16/9, contentMode: .fit)
                 }
                 VStack(alignment: .leading) {
                     HStack {

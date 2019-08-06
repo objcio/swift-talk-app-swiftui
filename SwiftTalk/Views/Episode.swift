@@ -31,8 +31,14 @@ struct Episode : View {
     }
     
     var overlay: AnyView? {
-        if let i = image.value, !playState.startedPlaying {
-            return AnyView(Image(uiImage: i).resizable().aspectRatio(contentMode: .fit))
+        if !playState.startedPlaying {
+            return AnyView(Group {
+                if image.value != nil {
+                    Image(uiImage: image.value!).resizable()
+                } else {
+                    Loader()
+                }
+            }.aspectRatio(16/9, contentMode: .fit))
         } else {
             return nil
         }
