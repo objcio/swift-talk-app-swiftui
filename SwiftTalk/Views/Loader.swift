@@ -70,7 +70,7 @@ struct FollowPath<S: Shape>: GeometryEffect {
 struct Trail<P: Shape>: Shape {
     let _path: P
     var position: CGFloat
-    let trailLength: CGFloat
+    var trailLength: CGFloat
     
     init(path: P, at position: CGFloat, trailLength: CGFloat) {
         self._path = path
@@ -78,12 +78,13 @@ struct Trail<P: Shape>: Shape {
         self.trailLength = trailLength
     }
     
-    var animatableData: CGFloat {
+    var animatableData: AnimatablePair<CGFloat, CGFloat> {
         get {
-            position
+            AnimatablePair(position, trailLength)
         }
         set {
-            self.position = newValue
+            position = newValue.first
+            trailLength = newValue.second
         }
     }
     
@@ -112,21 +113,23 @@ struct ArrowHead: Shape {
 }
 
 struct Loader: View {
-    var trailLength: CGFloat = 0.3
-    @State var isAnimating = false
+    @State var trailLength: CGFloat = 0.15
     @State var position: CGFloat = 0
     var body: some View {
         ZStack {
-            Trail(path: Eight(), at: position, trailLength: 0.15)
+            Trail(path: Eight(), at: position, trailLength: trailLength)
                 .stroke(Color.black, style: arrowStrokeStyle)
             ArrowHead().size(width: 16, height: 16)
                 .offset(x: -8, y: -8)
                 .modifier(FollowPath(position: position, shape: Eight()))
+                
+
         }
         .padding(20)
-        .onAppear {
+        .onAppear {            
             withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
                 self.position = 1
+                self.trailLength *= 2
             }
         }
     }

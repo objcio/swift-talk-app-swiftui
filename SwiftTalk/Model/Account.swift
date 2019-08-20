@@ -25,7 +25,7 @@ extension EnvironmentValues {
 
 struct Account: View {
     @Environment(\.window) var window
-    @ObjectBinding var session = Session.shared
+    @ObservedObject var session = Session.shared
     var body: some View {
         Form {
             if session.credentials == nil {

@@ -22,8 +22,8 @@ struct PlayState {
 struct Episode : View {
     let episode: EpisodeView
     @State var playState = PlayState()
-    @ObjectBinding var image: Resource<UIImage>
-    @ObjectBinding var progress: EpisodeProgress
+    @ObservedObject var image: Resource<UIImage>
+    @ObservedObject var progress: EpisodeProgress
     init(episode: EpisodeView) {
         self.episode = episode
         self.image = Resource(endpoint: Endpoint(imageURL: episode.poster_url))
@@ -58,7 +58,7 @@ struct Episode : View {
                 .padding([.bottom])
             Player(url: episode.mediaURL!, isPlaying: $playState.isPlaying, playPosition: $progress.progress, overlay: overlay)
               .aspectRatio(16/9, contentMode: .fit)
-            Slider(value: $progress.progress, from: 0, through: TimeInterval(episode.media_duration))
+            Slider(value: $progress.progress, in: 0...TimeInterval(episode.media_duration))
             Spacer()
         }.padding([.leading, .trailing])
     }

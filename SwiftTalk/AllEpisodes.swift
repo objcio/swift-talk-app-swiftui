@@ -12,7 +12,7 @@ import TinyNetworking
 
 struct EpisodeItem: View {
     let episode: EpisodeView
-    @ObjectBinding var store = sharedStore
+    @ObservedObject var store = sharedStore
     
     var body: some View {
         HStack {

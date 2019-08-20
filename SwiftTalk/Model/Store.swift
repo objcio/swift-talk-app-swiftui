@@ -11,13 +11,13 @@ import Model
 import SwiftUI
 import Combine
 
-final class Store: BindableObject {
-    let willChange: AnyPublisher<(), Never>
+final class Store: ObservableObject {
+    let objectWillChange: AnyPublisher<(), Never>
     let sharedCollections = Resource(endpoint: server.allCollections)
     let sharedEpisodes = Resource(endpoint: server.allEpisodes)
     
     init() {
-        willChange = sharedCollections.willChange.zip(sharedEpisodes.willChange).map { _ in () }.eraseToAnyPublisher()
+        objectWillChange = sharedCollections.objectWillChange.zip(sharedEpisodes.objectWillChange).map { _ in () }.eraseToAnyPublisher()
     }
     
     var loaded: Bool {

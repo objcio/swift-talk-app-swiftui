@@ -11,11 +11,11 @@ import KeychainItem
 import SwiftUI
 import Combine
 
-final class Session: BindableObject {
+final class Session: ObservableObject {
     @KeychainItem(account: "sessionId") private var sessionId
     @KeychainItem(account: "csrf") private var csrf
     
-    let willChange = PassthroughSubject<(), Never>()
+    let objectWillChange = PassthroughSubject<(), Never>()
     
     var credentials: (sessionId: String, csrf: String)? {
         get {
@@ -23,7 +23,7 @@ final class Session: BindableObject {
             return (s, c)
         }
         set {
-            willChange.send()
+            objectWillChange.send()
             sessionId = newValue?.sessionId
             csrf = newValue?.csrf
         }

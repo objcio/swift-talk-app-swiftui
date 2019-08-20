@@ -11,19 +11,19 @@ import SwiftUI
 import Combine
 import Model
 
-final class EpisodeProgress: BindableObject {
-    let willChange = PassthroughSubject<TimeInterval, Never>()
-    let sink: Subscribers.Sink<TimeInterval, Never>
+final class EpisodeProgress: ObservableObject {
+    let objectWillChange = PassthroughSubject<TimeInterval, Never>()
+    let sink: AnyCancellable
     let episode: EpisodeView
     var progress: TimeInterval {
         willSet {
-            willChange.send(newValue)
+            objectWillChange.send(newValue)
         }
     }
     init(episode: EpisodeView, progress: TimeInterval) {
         self.episode = episode
         self.progress = progress
-        sink = willChange
+        sink = objectWillChange
             .throttle(for: 10, scheduler: RunLoop.main, latest: true)
             .removeDuplicates()
             .sink { time in

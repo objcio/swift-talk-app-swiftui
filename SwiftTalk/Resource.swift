@@ -11,9 +11,9 @@ import TinyNetworking
 import Combine
 import SwiftUI
 
-final class Resource<A>: BindableObject {
+final class Resource<A>: ObservableObject {
     // todo empty publisher
-    var willChange: AnyPublisher<(), Never> = Publishers.Sequence<[()], Never>(sequence: []).eraseToAnyPublisher()
+    var objectWillChange: AnyPublisher<(), Never> = Publishers.Sequence<[()], Never>(sequence: []).eraseToAnyPublisher()
     private let subject = PassthroughSubject<(), Never>()
     let endpoint: Endpoint<A>
     private var firstLoad = true
@@ -25,7 +25,7 @@ final class Resource<A>: BindableObject {
     
     init(endpoint: Endpoint<A>) {
         self.endpoint = endpoint
-        self.willChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
+        self.objectWillChange = subject.handleEvents(receiveSubscription: { [weak self] sub in
             guard let s = self, s.firstLoad else { return }
             s.firstLoad = false
             s.reload()
